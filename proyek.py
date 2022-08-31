@@ -30,7 +30,7 @@ class CircularDoubleLinkedList:
     def update(self, index, data):
         size = self.hitungSize()
         if (self.head is None):
-            print("Double linked list is empty")
+            print("There is no chapter available")
 
         else:
             if (index < 0 or index >= size):
@@ -69,7 +69,7 @@ class CircularDoubleLinkedList:
         temp = self.head
         print("List dari depan : ")
         if self.head is None:
-            print("Circular Double Linked List is empty")
+            print("There is no chapter available")
 
         else:
             while (temp.next is not self.head):
@@ -80,7 +80,7 @@ class CircularDoubleLinkedList:
     def read(self, index):
         size = self.hitungSize()
         if (self.head is None):
-            print("Single linked list is empty")
+            print("There is no chapter available")
 
         else:
             if (index < 0 or index >= size):
@@ -91,6 +91,17 @@ class CircularDoubleLinkedList:
                 for i in range(index):
                     temp = temp.next
                 return temp.data
+            
+    def prev(self, iter):
+        iter = iter.prev
+        print(iter.data)
+        return None
+    
+    def next(self, iter):
+        iter = iter.next
+        print(iter.data)
+        return None
+        
 
 
 choice = 0
