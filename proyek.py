@@ -189,13 +189,14 @@ choice = 0
 choice11 = 0
 judulNovel = "laskar pelangi"
 llistChapter = CircularDoubleLinkedList()
-while (choice != 5):
-    print("Status")
-    print("1. Writer")
-    print("2. Reader")
-    print("3. Exit")
-    choice = int(input("Status: "))
-    print()
+while (True):
+    if choice == 0:
+        print("Status")
+        print("1. Writer")
+        print("2. Reader")
+        print("3. Exit")
+        choice = int(input("Status: "))
+        print()
     if (choice == 1):
         print("Writer Menu:")
         print("1. Write")
@@ -215,7 +216,8 @@ while (choice != 5):
                 chapter = str(input("Isi Chapter: "))
                 llistChapter.write(chapter)
             elif (choice11 == 2):
-                break
+                choice = 0
+                continue
             print()
         elif (choice1 == 2):
             indexUpdate = int(input("Index chapter yang mau diupdate: "))
@@ -236,7 +238,8 @@ while (choice != 5):
         elif (choice1 == 4):
             choice = 2
         elif (choice1 == 5):
-            break
+            choice = 0
+            continue
         elif (choice1 == 6):
             indexChapter = int(input("Index Chapter: "))
             isiChapter = str(input("Isi chapter: "))
@@ -270,12 +273,14 @@ while (choice != 5):
             elif (choice21 == 3):
                 choice = 1
             elif (choice21 == 4):
-                break
+                choice = 0
+                continue
 
         elif (choice2 == 2):
             choice = 1
         elif (choice2 == 3):
-            break
+            chioce = 0
+            continue
         elif (choice2 == 4):
             print("List Chapter : ")
             llistChapter.readSeluruh()
