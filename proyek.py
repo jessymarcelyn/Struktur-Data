@@ -9,7 +9,6 @@ class CircularDoubleLinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
-        self.size = 0
 
     def write(self, data):
         newNode = Node(data)
@@ -75,33 +74,53 @@ class CircularDoubleLinkedList:
             temp.prev.next = newNode
             temp.prev = newNode
 
+    # def update(self, index, data):
+    #     newNode = Node(data)
+    #     if (index > self.size):
+    #         print("Double linked list is empty")
+    #         return False
+    #     if (index == 0):
+    #         newNode.next = self.head.next
+    #         self.head = newNode
+    #         self.tail.next = newNode
+    #         self.head.prev = self.tail
+    #         return True
+    #     if (index == (self.size-1)):
+    #         newNode.prev = self.tail
+    #         self.tail.next = newNode
+    #         self.tail = newNode
+    #         self.size += 1
+    #         return True
+    #     iter = self.head
+    #     for i in range(0, index):
+    #         prev = iter
+    #         iter = iter.next
+    #     prev.next = newNode
+    #     newNode.prev = prev
+    #     newNode.next = iter.next
+    #     iter.next.prev = newNode
+    #     iter = None
+    #     return True
+
     def update(self, index, data):
+        size = self.hitungSize()
         newNode = Node(data)
-        if (index > self.size):
-            print("Double linked list is empty")
-            return False
+        if (index < 0 or index >= size):
+            print("index out of bounds")
+
         if (index == 0):
-            newNode.next = self.head.next
-            self.head = newNode
-            self.tail.next = newNode
+            self.head.data = newNode.data
             self.head.prev = self.tail
-            return True
-        if (index == (self.size-1)):
-            newNode.prev = self.tail
-            self.tail.next = newNode
-            self.tail = newNode
-            self.size += 1
-            return True
-        iter = self.head
-        for i in range(0, index):
-            prev = iter
-            iter = iter.next
-        prev.next = newNode
-        newNode.prev = prev
-        newNode.next = iter.next
-        iter.next.prev = newNode
-        iter = None
-        return True
+
+        if (index == size - 1):
+            self.tail.data = newNode.data
+            self.tail.next = self.head
+
+        else:
+            temp = self.head
+            for i in range(0, index):
+                temp = temp.next
+            temp.data = newNode.data
 
     def delete(self, index):
         size = self.hitungSize()
@@ -132,7 +151,7 @@ class CircularDoubleLinkedList:
 
         else:
             while (temp.next is not self.head):
-                print(temp.data, end=" ")
+                print(temp.data)
                 temp = temp.next
             print(temp.data)
 
@@ -189,6 +208,10 @@ choice = 0
 choice11 = 0
 judulNovel = "laskar pelangi"
 llistChapter = CircularDoubleLinkedList()
+llistChapter.write("a")
+llistChapter.write("b")
+llistChapter.write("c")
+llistChapter.write("d")
 while (True):
     if choice == 0:
         print("Status")
@@ -229,7 +252,7 @@ while (True):
             choice12 = int(input("Delete buku/ chapter: "))
             if (choice12 == 1):  # kehapus semua chapter
                 size = llistChapter.hitungSize()
-                while (size != 0):
+                while (size != -1):
                     size = size - 1
                     llistChapter.delete(size)
             elif (choice12 == 2):
@@ -279,7 +302,7 @@ while (True):
         elif (choice2 == 2):
             choice = 1
         elif (choice2 == 3):
-            chioce = 0
+            choice = 0
             continue
         elif (choice2 == 4):
             print("List Chapter : ")
